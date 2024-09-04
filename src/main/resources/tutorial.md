@@ -412,4 +412,4 @@ En este tutorial hemos desgranado como funcionan las herramientas de análisis y
 hemos aprendido como estas representan internamente el código y hemos hecho un pequeño caso práctico donde 
 hemos generado automáticamente *getters* y *setters* para una clase Java usando la librería JavaParser.
 
-Por último, si quieres consultar el código utilizado para este tutorial puedes hacerlo en el siguiente [enlace](https://github.com/PakitohWalls/javaparser-tutorial).
+Por último, si quieres consultar el código utilizado para este tutorial, puedes hacerlo en el siguiente [enlace](https://github.com/PakitohWalls/javaparser-tutorial).
