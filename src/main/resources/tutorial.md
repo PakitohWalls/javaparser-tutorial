@@ -13,7 +13,7 @@ Aunque la metaprogramación pasa desapercibida, está muy presente en nuestro d�
   renombrar métodos o variables, optimizar *imports*, etc.
 - Cuando Sonar analiza nuestro código (sin necesidad de ejecutarlo) y genera un informe sobre él.
 
-En resumen, en todos estos casos, un software es capaz de tomar como entrada, lo analizar y generar una salida a partir de él.
+En resumen, en todos estos casos, un software es capaz de tomar otro como entrada, analizarlo y generar una salida a partir de él.
 
 ## ¿Qué és un AST?
 
@@ -27,7 +27,7 @@ De la raíz se desprenden los distintos nodos que corresponden a la declaración
 De cada clase, a su vez, se desprenden nodos correspondientes a atributos, constructores, métodos, clases internas, etc.
 Y así sucesivamente, desglosando el código fuente completo hasta llegar a las hojas del árbol, que corresponden a elementos como modificadores, identificadores, tipos, etc.
 
-Por ejemplo, partiendo de la siguiente clase de ejemplo:
+Por ejemplo, partiendo de la siguiente clase:
 
 ```java
 package com.tutorial.example;
@@ -142,7 +142,7 @@ private boolean existsVariableWithName(List<VariableDeclarator> fields, String n
 
 A continuación, realizaremos un segundo ejemplo en el que modificamos el código Java utilizando la librería.
 
-Para ello, partimos de la siguiente clase:
+En este caso, nuestro objetivo será generar automáticamente los getters y setters (que no existan) para todos los atributos de la siguiente clase mediante código Java.
 
 ```java
 package com.example;
@@ -167,9 +167,8 @@ public class Example {
 }
 ```
 
-Nuestro objetivo será generar automáticamente los getters y setters (que no existan) para todos los atributos de la clase mediante código Java.
 
-La clase esperada tras aplicar nuestro código sería la siguiente:
+La clase esperada tras aplicar nuestro código sería:
 
 ```java
 package com.example;
@@ -277,6 +276,9 @@ public class GetterSetterGenerator {
             // Debemos almacenar el nombre de la variable y el tipo de la misma 
             // para poder generar posteriormente los getters y setters con el tipo de datos correcto
             n.getVariables().forEach(v -> this.attributes.add(new Attribute(v.getType(), v.getNameAsString())));
+            
+            // Al no llamar al metodo super.visit no vamos a visitar los nodos por debajo de cada FieldDeclaration del AST
+          
         }
     
         @Override
